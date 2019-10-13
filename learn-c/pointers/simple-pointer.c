@@ -2,6 +2,7 @@
 
 int main (){
 int a = 5;
+const int * r = &a;  // make r readonly by using the const keyword
 int *w; 	//wild pointer if it is not being initialized to anything. These types of pointers are not efficient because they may point to some unknown memory location
 void *x = NULL; 	//void pointer no data type can store anything but can crash.
 int *p = NULL; 	//null pointer
