@@ -25,3 +25,22 @@ https://github.com/RazrFalcon/cargo-bloat
 ```bash
 cargo install cargo-bloat
 ```
+
+# git delta
+
+## Repo Location 
+
+```bash
+https://github.com/dandavison/delta
+```
+
+## Install git delta
+```bash
+cargo install --git https://github.com/dandavison/delta
+```
+
+## Setup git to use the diff pager
+
+```bash
+git config --global core.pager "delta --dark"
+```
