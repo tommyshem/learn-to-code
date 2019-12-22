@@ -26,7 +26,7 @@ https://github.com/RazrFalcon/cargo-bloat
 cargo install cargo-bloat
 ```
 
-# git delta
+# git delta - highlight git output and better diff output colouring
 
 ## Repo Location 
 
@@ -43,4 +43,18 @@ cargo install --git https://github.com/dandavison/delta
 
 ```bash
 git config --global core.pager "delta --dark"
+```
+
+# bat - better cat command with colouring highlighting
+
+## Repo Location
+
+```bash
+https://github.com/sharkdp/bat
+```
+
+## Install bat
+
+```bash
+cargo install bat
 ```
