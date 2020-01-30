@@ -4,9 +4,8 @@ use std::io::prelude::*;
 
 fn main() {
 	let args: Vec<String> = env::args().collect();
-	let command_name = &args[0];  // command path and name
-	let search = &args[1];  // first argument if passed
-	let filename = &args[2];  // second argument if passed 
+	let command_name = &args[0];  //the first arg[0] is always the command path and name
+	let (search, filename) = parse_args(&args);   
 
 	println!("\nCommand used {}",command_name);
 	println!("Searching for {}",search);
@@ -17,4 +16,14 @@ fn main() {
 
 	f.read_to_string(&mut contents).expect("Something went wrong reading the file");
 	println!("With text:\n{}",contents);	
+}
+
+// parse command arguments passed in
+// args = args vector passed in
+// returns tuple of string slices as refs
+fn parse_args(args: &[String]) -> (&str,&str){
+	let query = &args[1];
+	let filename = &args[2];
+	(query,filename)
+
 }
