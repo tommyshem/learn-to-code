@@ -1,13 +1,15 @@
 use std::env;
 use std::fs::File;
 use std::io::prelude::*;
+use std::process;
+
 fn main() {
     let args: Vec<String> = env::args().collect();
     let command_name = &args[0]; //the first arg[0] is always the command path and name
-    let config = Config::new(&args).unwrap(); //_or_else( |err | {
-//		println!("Problem parsing arguments: {}",err);
-//		process::exit(1); // exit program with error code 1
-//		});
+    let config = Config::new(&args).unwrap_or_else(|err| {
+        println!("Problem parsing arguments: {}", err);
+        process::exit(1);
+    });
 
     println!("\nCommand used {}", command_name);
     println!("Searching for {}", config.query);
@@ -31,9 +33,10 @@ struct Config {
 // returns Config structure
 impl Config {
     fn new(args: &[String]) -> Result<Config, &'static str> {
-		if args.len() < 3 {  // check there is 3 or more arguments passed in
-			return Err("Not enough arguments - need query and filename"); // if not enough arguments passed in 
-		}
+        if args.len() < 3 {
+            // check there is 3 or more arguments passed in
+            return Err("Not enough arguments - need query and filename"); // if not enough arguments passed in
+        }
         let query = args[1].clone(); // clone string so config struct as ownership
         let filename = args[2].clone(); // clone string so config struct as ownership
         Ok(Config { query, filename }) // return config structure
