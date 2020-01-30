@@ -1,10 +1,11 @@
-use std::env;
-use std::fs::File;
+use std::env; // used to get arguments from command line
+use std::error::Error;
+use std::fs::File; // used for opening file
 use std::io::prelude::*;
-use std::process;
+use std::process; // used for ending process // used for Error
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
+    let args: Vec<String> = env::args().collect(); // get arguments from the command line
     let command_name = &args[0]; //the first arg[0] is always the command path and name
     let config = Config::new(&args).unwrap_or_else(|err| {
         println!("Problem parsing arguments: {}", err);
@@ -14,18 +15,26 @@ fn main() {
     println!("\nCommand used {}", command_name);
     println!("Searching for {}", config.query);
     println!("In File {}\n", config.filename);
-    run(config);
+
+    if let Err(e) = run(config) {
+        // check if error return
+        println!("Application error: {}", e); // if error then print message and exit
+        process::exit(1); // exit program with error code 1
+    }
 }
 
 // config passed in and load the file
-fn run(config: Config) {
-    let mut f = File::open(config.filename).expect("File not found"); // try load file
+// using ? to return error instead of panic with expect()
+fn run(config: Config) -> Result<(), Box<Error>> {
+    // result returns nothing and box returns any error
+    let mut f = File::open(config.filename)?; // try load file
 
     let mut contents = String::new(); // owned string to load file contents into
-    f.read_to_string(&mut contents) // read file contents into owned string
-        .expect("Something went wrong reading the file"); // if error panic and display message
+    f.read_to_string(&mut contents)?; // read file contents into owned string
+                                      // .expect("Something went wrong reading the file"); // if error panic and display message
 
     println!("With text:\n{}", contents); // prinf contents to console output
+    Ok(()) // return ok result no return parameters
 }
 
 // config structure for holding the arguments passed in from the command line
