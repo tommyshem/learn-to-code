@@ -14,13 +14,18 @@ fn main() {
     println!("\nCommand used {}", command_name);
     println!("Searching for {}", config.query);
     println!("In File {}\n", config.filename);
+    run(config);
+}
 
-    let mut f = File::open(config.filename).expect("File not found");
-    let mut contents = String::new();
+// config passed in and load the file
+fn run(config: Config) {
+    let mut f = File::open(config.filename).expect("File not found"); // try load file
 
-    f.read_to_string(&mut contents)
-        .expect("Something went wrong reading the file");
-    println!("With text:\n{}", contents);
+    let mut contents = String::new(); // owned string to load file contents into
+    f.read_to_string(&mut contents) // read file contents into owned string
+        .expect("Something went wrong reading the file"); // if error panic and display message
+
+    println!("With text:\n{}", contents); // prinf contents to console output
 }
 
 // config structure for holding the arguments passed in from the command line
