@@ -31,8 +31,12 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let mut contents = String::new(); // owned string to load file contents into
     f.read_to_string(&mut contents)?; // read file contents into owned string
                                       // .expect("Something went wrong reading the file"); // if error panic and display message
-
-    println!("With text:\n{}", contents); // prinf contents to console output
+                                      // search for the search query in the line and print it found any part
+                                      // in the line.
+    for line in search(&config.query, &contents) {
+        println!("{}", line);
+    }
+    println!("\nFull contents:\n{}", contents); // prinf contents to console output
     Ok(()) // return ok result no return parameters
 }
 
@@ -40,18 +44,63 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 mod test {
     use super::*;
     #[test]
-    fn one_result() {
+    fn case_sensitive() {
         let query = "duct";
         let contents = "\
-Rustt:
+Rust:
 safe, fast, productive.
 Pick three.
+Duct tape.
     ";
-        assert_eq!(vec!["safe,fast, productive."], search(query, contents));
+        assert_eq!(vec!["safe, fast, productive."], search(query, contents));
+    }
+
+    #[test]
+    fn case_insensitive() {
+        let query = "rUst";
+        let contents = "\
+Rust:
+safe, fast, productive.
+Pick three.
+Duct tape.
+Trust me.
+    ";
+        assert_eq!(
+            vec!["Rust:", "Trust me."],
+            search_case_insensitive(query, contents)
+        );
     }
 }
 // lifetime added as 2 str passed in and the compiler does not
 // know which one is used. contents passed in and out.
-pub fn search<'a>(query:&str,contents:&'a str) -> Vec<&'a str>{
-    vec![]
+pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+    let mut results = Vec::new();
+    // iterator through the contents one line at a time
+    for line in contents.lines() {
+        //check contents contains the search query
+        if line.contains(query) {
+            results.push(line); // push found string into result vector
+        }
+    }
+    results
+}
+
+// lifetime added as 2 str passed in and the compiler does not
+// know which one is used. contents passed in and out.
+pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+    let query=query.to_lowercase(); // built in function to convert string to lower case
+    // query changed to owned string rather and str slice as calling
+    // to_lowercase returns a new string and not a str slice
+    let mut results = Vec::new();
+    // iterator through the contents one line at a time
+    for line in contents.lines() {
+        //check contents contains the search query
+        // now query is a string due to the to_lowercase function call 
+        // The contains needs a string slice passed in so
+        // we have to use a reference of the string 
+        if line.to_lowercase().contains(&query) { 
+            results.push(line); // push found string into result vector
+        }
+    }
+    results
 }
