@@ -1,11 +1,13 @@
 use std::error::Error;
 use std::fs::File; // used for opening file
 use std::io::prelude::*;
+use std::env;
 
 // config structure for holding the arguments passed in from the command line
 pub struct Config {
     pub query: String,    // owned string
     pub filename: String, // owned string
+    pub case_sensitive: bool, // case sensitive true = sensitive / false = insensitive
 }
 // parse command arguments passed in
 // args = args vector passed in
@@ -18,7 +20,13 @@ impl Config {
         }
         let query = args[1].clone(); // clone string so config struct as ownership
         let filename = args[2].clone(); // clone string so config struct as ownership
-        Ok(Config { query, filename }) // return config structure
+        // using is_err will return true if no error and false if an error
+        // so if there is an env CASE_INSENSITIVE set, then true will be return.
+        // If env is not set then result will return an error and then the is_err() will return false 
+        let case_sensitive = env::var("CASE_INSENSITIVE").is_err();
+        // create Config structure and fill it in with the values from above. 
+        // then wrap config in result return type
+        Ok(Config { query, filename, case_sensitive }) // return config structure
     }
 }
 
@@ -30,12 +38,19 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 
     let mut contents = String::new(); // owned string to load file contents into
     f.read_to_string(&mut contents)?; // read file contents into owned string
-                                      // .expect("Something went wrong reading the file"); // if error panic and display message
-                                      // search for the search query in the line and print it found any part
-                                      // in the line.
-    for line in search(&config.query, &contents) {
+    
+    // check for case sensitive and use the right function call and then use the results
+    let results = if config.case_sensitive {
+        search (&config.query,&contents)
+    } else{
+        search_case_insensitive(&config.query,&contents)
+    };
+
+    // search query in the the loaded file and print the line                                  
+    for line in results {
         println!("{}", line);
     }
+
     println!("\nFull contents:\n{}", contents); // prinf contents to console output
     Ok(()) // return ok result no return parameters
 }
