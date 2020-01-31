@@ -1,8 +1,8 @@
 extern crate minigrep;
 
+use minigrep::Config;
 use std::env; // used to get arguments from command line
 use std::process; // used for ending process // used for Error
-use minigrep::Config;
 
 fn main() {
     let args: Vec<String> = env::args().collect(); // get arguments from the command line

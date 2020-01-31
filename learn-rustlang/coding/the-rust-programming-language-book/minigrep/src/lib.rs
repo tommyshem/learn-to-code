@@ -35,3 +35,23 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     println!("With text:\n{}", contents); // prinf contents to console output
     Ok(()) // return ok result no return parameters
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    #[test]
+    fn one_result() {
+        let query = "duct";
+        let contents = "\
+Rustt:
+safe, fast, productive.
+Pick three.
+    ";
+        assert_eq!(vec!["safe,fast, productive."], search(query, contents));
+    }
+}
+// lifetime added as 2 str passed in and the compiler does not
+// know which one is used. contents passed in and out.
+pub fn search<'a>(query:&str,contents:&'a str) -> Vec<&'a str>{
+    vec![]
+}
