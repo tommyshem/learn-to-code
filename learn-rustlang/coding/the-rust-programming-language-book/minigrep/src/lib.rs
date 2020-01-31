@@ -46,12 +46,14 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
         search_case_insensitive(&config.query,&contents)
     };
 
+    println!("\nFull contents:\n{}", contents); // print all the contents to the console output
+
+    println!("Matched these lines in the file:"); // print found items title
     // search query in the the loaded file and print the line                                  
     for line in results {
         println!("{}", line);
     }
 
-    println!("\nFull contents:\n{}", contents); // prinf contents to console output
     Ok(()) // return ok result no return parameters
 }
 
