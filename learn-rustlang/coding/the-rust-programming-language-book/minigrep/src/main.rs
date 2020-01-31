@@ -25,7 +25,7 @@ fn main() {
 
 // config passed in and load the file
 // using ? to return error instead of panic with expect()
-fn run(config: Config) -> Result<(), Box<Error>> {
+fn run(config: Config) -> Result<(), Box<dyn Error>> {
     // result returns nothing and box returns any error
     let mut f = File::open(config.filename)?; // try load file
 
