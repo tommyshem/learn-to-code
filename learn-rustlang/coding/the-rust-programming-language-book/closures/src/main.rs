@@ -8,34 +8,19 @@ fn main() {
     generate_workout(simulated_user_specified_value, simulated_random_number);
 }
 
-// pass number in and wait 2 seconds then pass number out
-fn simulated_expensive_calculation(intensity: u32) -> u32 {
-    println!("Calculating slowly...");
-    thread::sleep(Duration::from_secs(2));
-    intensity
-}
-
 fn generate_workout(intensity: u32, random_number: u32) {
-    // check intensity less than 25 do workout
-    // if higher 25 then go onto the next if statement
-    // check random number is 3 then water break anything else
-    // running
- let expensive_result = simulated_expensive_calculation(intensity);
+    // the expensive_closure holds the closure function and not the return value
+    let expensive_closure = |num: u32| -> u32 {
+        println!("Calculating slowly...");
+        thread::sleep(Duration::from_secs(2));
+        num
+    };
     if intensity < 25 {
-        println!(
-            "Today, do {} pushups!",
-            expensive_result
-        );
-        println!(
-            "Next, do {} situps!",
-            expensive_result
-        );
+        println!("Today, do {} pushups!", expensive_closure(intensity));
+        println!("Next, do {} situps!", expensive_closure(intensity));
     } else if random_number == 3 {
-    println!("Take a break today! Remember to stay hydrated!");
-} else {
-    println!(
-        "Today, run for {} minutes!",
-        expensive_result
-    );
-}
+        println!("Take a break today! Remember to stay hydrated!");
+    } else {
+        println!("Today, run for {} minutes!", expensive_closure(intensity));
+    }
 }
