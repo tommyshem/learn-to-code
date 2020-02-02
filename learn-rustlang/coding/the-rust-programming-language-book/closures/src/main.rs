@@ -1,20 +1,25 @@
 use std::thread;
 use std::time::Duration;
 
+fn main() {
+    let simulated_user_specified_value = 10;
+    let simulated_random_number = 3;
+
+    generate_workout(simulated_user_specified_value, simulated_random_number);
+}
+
+// pass number in and wait 2 seconds then pass number out
 fn simulated_expensive_calculation(intensity: u32) -> u32 {
     println!("Calculating slowly...");
     thread::sleep(Duration::from_secs(2));
     intensity
 }
 
-fn main() {
-    let simulated_user_specified_value = 10;
-    let simulated_random_number = 7;
-
-    generate_workout(simulated_user_specified_value, simulated_random_number);
-}
-
 fn generate_workout(intensity: u32, random_number: u32) {
+    // check intensity less than 25 do workout
+    // if higher 25 then go onto the next if statement
+    // check random number is 3 then water break anything else
+    // running
     if intensity < 25 {
         println!(
             "Today, do {} pushups!",
@@ -24,14 +29,12 @@ fn generate_workout(intensity: u32, random_number: u32) {
             "Next, do {} situps!",
             simulated_expensive_calculation(intensity)
         );
-    } else {
-        if random_number == 3 {
-            println!("Take a break today! Remember to stay hydrated!");
-        } else {
-            println!(
-                "Today, run for {} minutes!",
-                simulated_expensive_calculation(intensity)
-            );
-        }
-    }
+    } else if random_number == 3 {
+    println!("Take a break today! Remember to stay hydrated!");
+} else {
+    println!(
+        "Today, run for {} minutes!",
+        simulated_expensive_calculation(intensity)
+    );
+}
 }
