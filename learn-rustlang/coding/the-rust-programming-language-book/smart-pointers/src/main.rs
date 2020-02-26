@@ -1,7 +1,7 @@
 struct CustomSmartPointer {
     data: String,
 }
-
+                              
 impl Drop for CustomSmartPointer {
     fn drop(&mut self) {
         println!("Dropping CustomSmartPointer with data {}", self.data);
@@ -21,10 +21,29 @@ fn main() {
     let c = CustomSmartPointer {
         data: String::from("my stuff"),
     };
-    let d = CustomSmartPointer {
+    let _d = CustomSmartPointer {
         data: String::from("other stuff"),
     };
     println!("CustomSmartPointers created");
     drop(c);
     println!("CustomSmartPointer dropped before the end of main.");
 }
+
+fn under(){
+    let artist = "";
+    let mastered_for_itunes = "";
+    let release_date = "";
+    let genres = "";
+    let record_label = "";
+    let track_count = "";
+
+    let _ = vec![
+        ("Artist", artist, true),
+        ("Mastered for iTunes", &mastered_for_itunes, true),
+        ("Release Date", release_date, true),
+        ("Genres", genres, true),
+        ("Record Label", record_label, true),
+        ("Tracks", track_count, true)
+    ];
+}
+
