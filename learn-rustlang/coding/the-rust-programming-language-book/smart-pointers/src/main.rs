@@ -21,10 +21,31 @@ fn main() {
     let c = CustomSmartPointer {
         data: String::from("my stuff"),
     };
-    let d = CustomSmartPointer {
+    let _d = CustomSmartPointer {
         data: String::from("other stuff"),
     };
     println!("CustomSmartPointers created");
     drop(c);
     println!("CustomSmartPointer dropped before the end of main.");
+
+    // Page 321 Reference counted smart pointers
+    enum List {
+        Cons(i32,Rc<List>),
+        Nil,
+    }
+
+    use List::{Cons,Nil};
+    use std::rc::Rc;
+    
+    let e = Rc::new(Cons(5,Rc::new(Cons(10,Rc::new(Nil))))); // list
+    println!("count after creating e = {} ",Rc::strong_count(&e));
+    {
+    let _f = Cons(3,Rc::clone(&e)); // list with e added to end clone only clones reference
+    println!("count after creating e = {} ",Rc::strong_count(&e));
+    let _g = Cons(5,Rc::clone(&e)); // list with e added to end clone only clones reference
+    println!("count after creating e = {} ",Rc::strong_count(&e));
+    }
+    // reference counts end and they will be cleaned up with only 1 count left
+    println!("count after creating e = {} ",Rc::strong_count(&e));
+    
 }
