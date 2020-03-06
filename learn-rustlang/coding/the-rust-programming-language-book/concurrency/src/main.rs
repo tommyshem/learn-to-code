@@ -1,6 +1,9 @@
-use std::thread;
-use std::time::Duration;
+use std::sync::mpsc;
+use std::thread; // threads
+use std::time::Duration; // time // channels
+
 fn main() {
+    // threads from pages 344-346
     println!("\nThread Join examples from pages 344-346");
     println!("\nWait until all threads are finished");
     threads_join_wait_until_all_threads_finished();
@@ -8,8 +11,49 @@ fn main() {
         "\nWait until all the spawned threads are finished, before running the main thread loop"
     );
     threads_join_spawn_threads_first();
+    // move closures in threads from pages 347-349
     println!("\nMove closure thread from pages 347-349");
     move_closure_threads();
+    // message passing between threads from pages 349-
+    println!("message passing between threads from pages 349-352");
+    message_passing_between_threads();
+    println!("message passing between threads sending multiple values from pages 353-");
+    message_passing_between_threads_sending_multiple_values();
+}
+
+/// message passing between threads using multiple values
+fn message_passing_between_threads_sending_multiple_values() {
+    let (tx, rx) = mpsc::channel();
+    thread::spawn(move || {
+        let vals = vec![
+            String::from("hi"),
+            String::from("from"),
+            String::from("the"),
+            String::from("thread"),
+        ];
+        for val in vals {
+            tx.send(val).unwrap();
+            thread::sleep(Duration::from_millis(1));
+        }
+    });
+    for received in rx {
+        println!("Got: {}", received);
+    }
+}
+
+/// message passing between threads
+fn message_passing_between_threads() {
+    // mpsc stands for multiple producer, single consumer
+    // multiple sending ends but only one receiving end
+    // returns a tuple first value sending end and the second value is the receiving end
+    let (tx, rx) = mpsc::channel();
+    thread::spawn(move || {
+        let val = String::from("Hi");
+        tx.send(val).unwrap(); // send message using the channel to the main thread
+                               // send() takes ownership of the value sent and can not be used
+    });
+    let received = rx.recv().unwrap(); // [Blocking] will wait for message from thread
+    println!("Got: {}", received);
 }
 
 /// Example of move variables to the spawned thread
@@ -23,6 +67,7 @@ fn move_closure_threads() {
     handle.join().unwrap(); // wait for threads to finish [blocking]
 }
 
+/// thread join and wait until all threads are finished
 pub fn threads_join_wait_until_all_threads_finished() {
     let handle = thread::spawn(|| {
         for i in 1..10 {
@@ -37,6 +82,7 @@ pub fn threads_join_wait_until_all_threads_finished() {
     }
 }
 
+/// wait until all spawned threads are run first and then run the main thread loop
 pub fn threads_join_spawn_threads_first() {
     let handle = thread::spawn(|| {
         for i in 1..10 {
