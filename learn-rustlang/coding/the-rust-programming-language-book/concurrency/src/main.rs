@@ -1,6 +1,5 @@
 mod shared_state;
 
-use shared_state::mutex;
 use std::sync::mpsc;
 use std::thread; // threads
 use std::time::Duration; // time // channels
