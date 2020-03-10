@@ -7,3 +7,4 @@ learn-rustlang/coding/the-rust-programming-language-book/pattern_matching/let_ex
 learn-rustlang/coding/the-rust-programming-language-book/pattern_matching/destructuring_structs/Cargo.lock
 learn-rustlang/coding/the-rust-programming-language-book/pattern_matching/function_parameters/Cargo.lock
 learn-rustlang/coding/the-rust-programming-language-book/pattern_matching/match_examples/Cargo.lock
+learn-rustlang/coding/the-rust-programming-language-book/pattern_matching/destructuring_enums/Cargo.lock
