@@ -4,3 +4,6 @@ learn-rustlang/coding/the-rust-programming-language-book/smart-pointers/.vscode/
 learn-rustlang/coding/the-rust-programming-language-book/concurrency/.vscode/launch.json
 learn-rustlang/coding/the-rust-programming-language-book/pattern_matching/for_loop/Cargo.lock
 learn-rustlang/coding/the-rust-programming-language-book/pattern_matching/let_example/Cargo.lock
+learn-rustlang/coding/the-rust-programming-language-book/pattern_matching/destructuring_structs/Cargo.lock
+learn-rustlang/coding/the-rust-programming-language-book/pattern_matching/function_parameters/Cargo.lock
+learn-rustlang/coding/the-rust-programming-language-book/pattern_matching/match_examples/Cargo.lock
