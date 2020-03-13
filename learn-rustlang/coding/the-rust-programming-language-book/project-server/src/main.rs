@@ -1,3 +1,4 @@
+use std::fs;
 use std::io::prelude::*;
 use std::net::TcpListener;
 use std::net::TcpStream;
@@ -20,13 +21,14 @@ use std::net::TcpStream;
 /// entry point to the program
 fn main() {
     // setup tcp listener on address:port
-    let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
-    
+    let address: &str = "127.0.0.1:7878";
+    let listener = TcpListener::bind(address).unwrap();
+    println!("Connect to Sever on {}\n", address);
     // loop through incoming stream
     for stream in listener.incoming() {
         // stream
         let stream = stream.unwrap();
-        // 
+        //
         handle_connection(stream);
     }
 }
@@ -39,4 +41,24 @@ fn handle_connection(mut stream: TcpStream) {
     // print stdout the request received
     println!("\n\nHandle Connection method called");
     println!("Request: {}", String::from_utf8_lossy(&buffer[..]));
+
+    let (header_response, contents_filename) = if buffer.starts_with(b"GET / HTTP/1.1\r\n") {
+        ("HTTP/1.1 200 OK\r\n\r\n", "main_page.html")
+    } else {
+        ("HTTP/1.1 404 NOT FOUND\r\n\r\n", "404.html")
+    };
+
+    let contents = fs::read_to_string(contents_filename).unwrap();
+    let server_response = format!("{}{}", header_response, contents);
+    // print out response for debugging purpose
+    println!("Response: {}", server_response);
+
+    // send response from the server
+    stream.write(server_response.as_bytes()).unwrap();
+    stream.flush().unwrap();
+}
+
+/// server response header for a blank page
+fn response_blank_page() -> String {
+    return "HTTP/1.1 200 OK\r\n\r\n".to_string();
 }
