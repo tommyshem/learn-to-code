@@ -11,3 +11,4 @@ learn-rustlang/coding/the-rust-programming-language-book/pattern_matching/destru
 learn-rustlang/coding/the-rust-programming-language-book/pattern_matching/binding/Cargo.lock
 learn-rustlang/coding/the-rust-programming-language-book/pattern_matching/match_guard/Cargo.lock
 learn-rustlang/coding/the-rust-programming-language-book/project-server/Cargo.lock
+learn-golang/concurrent/goroutine/simple-channel-example/simple-channel
