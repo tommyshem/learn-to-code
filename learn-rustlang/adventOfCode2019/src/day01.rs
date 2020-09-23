@@ -19,8 +19,30 @@ pub fn run<R>(mut input: R) -> usize where R: io::BufRead, {
             None => 0,
         };
     total += m;
-        print!("{}", n);
+        print!("The input is {}\n", n);
         buffer.clear();
     }
+    println!("The answer is {}\n",total);
     total
+}
+
+#[cfg(test)]
+mod tests{
+    use super::*;
+
+    #[test]
+    fn test_01(){ 
+    let test_cases: &[(usize,usize,usize)] = &[
+        // input, expected1, expected2
+        (12,2,2),
+        (14,2,2),
+        (1969,654,966),
+        (100756,33583,50346),
+    ];
+    for (input,expected1,expected2) in test_cases {
+        let reader = io::BufReader::new (input.);
+        let actual = run(reader);
+        assert_eq!(*expected1,actual);
+    }
+}
 }

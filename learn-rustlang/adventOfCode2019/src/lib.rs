@@ -1,5 +1,5 @@
 pub mod day01;
 
-pub fn foo(){
+pub fn foo() {
     println!("Lib function");
 }

@@ -17,6 +17,7 @@ struct Opt{
 }
 fn main() {
     let opt = Opt::from_args();
+    let day_number = opt.day;
     
     match opt.input {
         // filename from the command args
@@ -24,15 +25,22 @@ fn main() {
             // read the file
             let file = fs::File::open(path).expect("Could not read the file.\n");
             let reader = io::BufReader::new(file);
-            let answer = adventOfCode2019::day01::run(reader);
-            println!("The answer is {}\n", answer);
+            day_challenge(reader,day_number);
+
         }
         // file piped into stdin as no filename passed in
         None => {
             let stdin = io::stdin();
             let guard = stdin.lock();
-            let answer = adventOfCode2019::day01::run(guard);
-            println!("The answer is {}\n", answer);
-        },
+            let reader = io::BufReader::new(guard);
+            day_challenge(reader,day_number);
+        }
     }
+
+fn day_challenge<R>(mut input: R,day_number:usize) where R: io::BufRead,{
+       match day_number {
+        1 => adventOfCode2019::day01::run(input),
+        _ => panic!("Day must be between 1 and 25, inclusive "),
+    };
+}
 }
