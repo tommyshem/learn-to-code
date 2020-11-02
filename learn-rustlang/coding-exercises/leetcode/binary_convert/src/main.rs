@@ -3,6 +3,7 @@ fn main() {
     print!("Binary number is {}", convert(list));
 }
 
+// my version of pow() in rust
 fn powerof(index: u32) -> u128 {
     if index == 0 {
         return 1;
@@ -17,11 +18,12 @@ fn powerof(index: u32) -> u128 {
 
 fn convert(list: Vec<i32>) -> u128 {
     let mut result: u128 = 0;
+    let base:u128 = 2;
     // loop through the list
     for (index, binary_value) in list.iter().rev().enumerate() {
         match binary_value {
             0 => {}
-            1 => result += powerof(index as u32),
+            1 => result += base.pow(index as u32),//powerof(index as u32),
             _ => panic!("Not a binary number"),
         }
     }
