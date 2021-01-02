@@ -1,6 +1,5 @@
-fn main(){
-    disemvowel("test program");
-}
+// code wars - disemvowel trolls
+// different ways of doing the same problem below.
 
 fn disemvowel(s: &str) -> String {
     s.chars().filter(|&x| !"aeiouAEIOU".contains(x)).collect()

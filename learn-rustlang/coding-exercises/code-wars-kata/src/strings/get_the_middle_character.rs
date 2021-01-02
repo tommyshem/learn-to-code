@@ -1,6 +1,4 @@
-fn main() {
-    println!("{}", get_middle("testing"));
-}
+// code wars - get the middle character
 
 fn get_middle(s: &str) -> &str {
     let length = s.len();

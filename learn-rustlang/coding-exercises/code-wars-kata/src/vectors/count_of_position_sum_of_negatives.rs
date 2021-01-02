@@ -1,6 +1,4 @@
-fn main() {
-    println!("Coding Kata - count of positives/sum of negatives");
-}
+// code wars - count of position sum of negatives
 
 fn count_positives_sum_negatives(input: Vec<i32>) -> Vec<i32> {
     if input.is_empty() {

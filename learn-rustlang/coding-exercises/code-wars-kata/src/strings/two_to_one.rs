@@ -1,6 +1,4 @@
-fn main() {
-    println!("{}",longest("asdsadf","kjkll"));
-}
+// code wars - two to one
 
 fn longest(a1: &str, a2: &str) -> String {
     // Copy chars into a vector, sort and remove duplicates

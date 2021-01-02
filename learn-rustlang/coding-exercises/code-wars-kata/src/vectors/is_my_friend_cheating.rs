@@ -1,8 +1,4 @@
 // https://www.codewars.com/kata/is-my-friend-cheating/train/rust
-fn main() {
-    let result = remove_nb(26);
-    dbg!(result);
-}
 
 fn remove_nb(m: i32) -> Vec<(i32, i32)> {
     let mut result = Vec::<(i32, i32)>::with_capacity(2);

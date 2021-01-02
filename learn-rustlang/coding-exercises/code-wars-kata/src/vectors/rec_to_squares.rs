@@ -22,13 +22,8 @@ while old_lng > 0{
 return Some(results);
 }
 
-fn main() {
-    sq_in_rect(30,30);
-}
-
 #[cfg(test)]
-    mod tests {
-    use super::*;
+
 
 fn testing(lng: i32, wdth: i32, exp: Option<Vec<i32>>) -> () {
     assert_eq!(sq_in_rect(lng, wdth), exp)

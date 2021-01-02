@@ -1,7 +1,0 @@
-[package]
-name = "is-my-friend-cheating"
-version = "0.1.0"
-authors = ["tommyshem <1952659+tommyshem@users.noreply.github.com>"]
-edition = "2018"
-
-[dependencies]
