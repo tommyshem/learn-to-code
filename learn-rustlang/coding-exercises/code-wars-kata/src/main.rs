@@ -7,6 +7,7 @@ fn main() {
     println!("{}","Codewars completed".blue().bold());
     println!("{}","string solutions".red().bold());
     strings::disemvowel_trolls::solution();
+    strings::get_drink_by_profession::solution();
     strings::get_the_middle_character::solution();
     strings::string_ends_with::solution();
     strings::two_to_one::solution();
