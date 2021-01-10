@@ -1,5 +1,12 @@
 // code wars - get the middle character
+use colored::*;
 
+pub fn solution(){
+    println!("{} Run test suit {}","Get the middle character".green(),"cargo test get_middle_test".yellow());
+    let _solution = get_middle("testing");
+}
+
+// solution to the problem
 fn get_middle(s: &str) -> &str {
     let length = s.len();
     let half = length / 2;
@@ -12,17 +19,17 @@ fn get_middle(s: &str) -> &str {
 }
 
 #[test]
-fn example_tests() {
+fn get_middle_test() {
     assert_eq!(get_middle("test"), "es");
 }
 
 #[test]
-fn examples_test1() {
+fn get_middle_test1() {
     assert_eq!(get_middle("testing"), "t");
     assert_eq!(get_middle("A"), "A");
 }
 #[test]
-fn examples_test2() {
+fn get_middle_test2() {
     assert_eq!(get_middle("middle"), "dd");
     assert_eq!(get_middle("of"), "of");
 }

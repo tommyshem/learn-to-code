@@ -1,6 +1,13 @@
 // https://www.codewars.com/kata/is-my-friend-cheating/train/rust
 
-fn remove_nb(m: i32) -> Vec<(i32, i32)> {
+use colored::*;
+
+pub fn solution(){
+    println!("{} Run test suit {}","Is my friend cheating".green(),"cargo test is_my_friend_cheating_basic_test".yellow());
+    let _solution = is_my_friend_cheating(100);
+}
+
+fn is_my_friend_cheating(m: i32) -> Vec<(i32, i32)> {
     let mut result = Vec::<(i32, i32)>::with_capacity(2);
     //                          / \
     // same as above.            |
@@ -21,23 +28,14 @@ mod tests {
     use super::*;
 
     fn testing(n: i32, exp: Vec<(i32, i32)>) -> () {
-        assert_eq!(remove_nb(n), exp)
+        assert_eq!(is_my_friend_cheating(n), exp)
     }
 
     #[test]
-    fn basics_remove_nb() {
+    fn is_my_friend_cheating_basic_test() {
         testing(26, vec![(15, 21), (21, 15)]);
-    }
-    #[test]
-    fn basics_remove_nb1() {
         testing(100, vec![]);
-    }
-    #[test]
-    fn basics_remove_nb2() {
         testing(101, vec![(55, 91), (91, 55)]);
-    }
-    #[test]
-    fn basics_remove_nb3() {
         testing(102, vec![(70, 73), (73, 70)]);
     }
 }

@@ -1,10 +1,16 @@
+// codewars string ends with
+use colored::*;
 
-
+pub fn solution(){
+    println!("{} Run test suit {}","string ends with".green(),"cargo test string_ends_with_test".yellow());
+    let _solution = string_ends_with("testing","g");
+}
 fn string_ends_with(word: &str, ending: &str) -> bool {
     return word.ends_with(ending);
 }
 
-fn string_ends_with1(word: &str, ending: &str) -> bool {
+// another soloution for the same problem
+fn _string_ends_with1(word: &str, ending: &str) -> bool {
     let word_len = word.len();
     let ending_len = ending.len();
     
@@ -14,7 +20,7 @@ fn string_ends_with1(word: &str, ending: &str) -> bool {
 }
 
 #[test]
-fn returns_expected() {
+fn string_ends_with_test() {
   assert_eq!(true, string_ends_with("abc", "c"));
-  assert_eq!(false, string_ends_with1("strawberry", "banana"));
+  assert_eq!(false, _string_ends_with1("strawberry", "banana"));
 }

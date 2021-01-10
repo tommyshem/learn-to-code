@@ -1,5 +1,12 @@
 // code wars - two to one
+use colored::*;
 
+pub fn solution(){
+    println!("{} Run test suit {}","Two to one".green(),"cargo test two_to_one_basic_tests".yellow());
+    let _solution = longest("testing","te");
+}
+
+// solution to the problem
 fn longest(a1: &str, a2: &str) -> String {
     // Copy chars into a vector, sort and remove duplicates
     // 2 lines below can be removed for the lines in the comments below.
@@ -31,7 +38,7 @@ fn longest(a1: &str, a2: &str) -> String {
     }
 
     #[test]
-    fn basic_tests() {
+    fn two_to_one_basic_tests() {
         testing("aretheyhere", "yestheyarehere", "aehrsty");
         testing("loopingisfunbutdangerous", "lessdangerousthancoding", "abcdefghilnoprstu");
         

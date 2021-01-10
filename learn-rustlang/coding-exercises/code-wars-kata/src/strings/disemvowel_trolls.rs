@@ -1,17 +1,27 @@
 // code wars - disemvowel trolls
 // different ways of doing the same problem below.
 
+use colored::*;
+
+pub fn solution(){
+    println!("{} Run test suit {}","Disemvowel Trolls".green(),"cargo test disemvowel_test".yellow());
+    let _solution = disemvowel("This website is for losers LOL!");
+}
+
+// the best rust solution for the problem in my view
 fn disemvowel(s: &str) -> String {
     s.chars().filter(|&x| !"aeiouAEIOU".contains(x)).collect()
 }
 
-fn disemvowel1(s: &str) -> String {
+// different way of doing the same thing as first function
+fn _disemvowel1(s: &str) -> String {
     s.chars()
         .filter(|&c| !"aeiou".contains(c.to_ascii_lowercase()))
         .collect()
 }
 
-fn disemvowel2(string: &str) -> String {
+// different way of doing the same thing as first function
+fn _disemvowel2(string: &str) -> String {
     string.chars()
         .filter(|letter| {
             match letter.to_lowercase().next().unwrap() {
@@ -22,25 +32,30 @@ fn disemvowel2(string: &str) -> String {
         .collect()
 }
 
-fn disemvowel3(s: &str) -> String {
-    s.chars().filter(|c| !is_vowel(c)).collect::<String>()
+// different way of doing the same thing as first function
+fn _disemvowel3(s: &str) -> String {
+    s.chars().filter(|c| !_is_vowel(c)).collect::<String>()
 }
-
-fn is_vowel(c: &char) -> bool {
+// used in function above
+fn _is_vowel(c: &char) -> bool {
     let lower = c.to_lowercase().to_string();
 
     lower == "a" || lower == "e" || lower == "i" || lower == "o" || lower == "u"
 }
 
-fn disemvowel4(s: &str) -> String {
+// different way of doing the same thing as first function
+fn _disemvowel4(s: &str) -> String {
     s.chars().filter(|c| !matches!(c.to_ascii_lowercase(), 'a' | 'e' | 'i' | 'o' | 'u')).collect()
 }
-fn disemvowel5(s: &str) -> String {
+
+// different way of doing the same thing as first function
+fn _disemvowel5(s: &str) -> String {
     let vowels = ['a', 'A', 'e', 'E', 'i', 'I', 'o', 'O', 'u', 'U'];
     s.chars().filter(|ch| !vowels.contains(ch)).collect()
 }
 
-fn disemvowel6(s: &str) -> String {
+// different way of doing the same thing as first function
+fn _disemvowel6(s: &str) -> String {
     let mut new = String::new();
     for i in s.chars() {
         match i {
@@ -54,8 +69,10 @@ fn disemvowel6(s: &str) -> String {
     }
     new
 }
+
 // vowels A, E, I, O, U,
-fn disemvowel7(s: &str) -> String {
+// different way of doing the same thing as first function
+fn _disemvowel7(s: &str) -> String {
     let mut string = String::new();
     for c in s.chars(){
         // check for vowels
@@ -80,7 +97,7 @@ mod tests {
     use super::disemvowel;
     
     #[test]
-    fn test_disemvowel() {
+    fn disemvowel_test() {
         assert_eq!(disemvowel(""), "");
         assert_eq!(disemvowel("This website is for losers LOL!"), "Ths wbst s fr lsrs LL!");
     }
