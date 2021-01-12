@@ -12,14 +12,16 @@ fn handle_client(stream: UnixStream) {
 }
 
 fn main() {
-    let socket = Path::new("/tmp/my-rust.sock");
-
+    // socket name to use
+    let socket_name = "/tmp/my-rust.sock";
+    let socket = Path::new(socket_name);
+    // delete the socket if it already exits
     if socket.exists() {
         fs::remove_file(&socket).expect("Could not remove file");
     }
-
-    let listener = UnixListener::bind("/tmp/pfych-rust.sock").unwrap();
-
+    // create socket
+    let listener = UnixListener::bind(socket_name).unwrap();
+    // listen on the socket
     for stream in listener.incoming() {
         match stream {
             Ok(stream) => {
