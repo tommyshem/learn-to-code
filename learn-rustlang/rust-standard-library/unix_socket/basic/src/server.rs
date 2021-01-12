@@ -1,18 +1,24 @@
+use std::fs;
 use std::io::{BufRead, BufReader};
-use std::os::unix::net::{UnixStream,UnixListener};
+use std::os::unix::net::{UnixListener, UnixStream};
+use std::path::Path;
 use std::thread;
 
 fn handle_client(stream: UnixStream) {
     let stream = BufReader::new(stream);
     for line in stream.lines() {
-        println!("{}", line.unwrap());
+        println!("{}", line.unwrap())
     }
 }
 
-
-
 fn main() {
-    let listener = UnixListener::bind("/tmp/rust-uds.sock").unwrap();
+    let socket = Path::new("/tmp/my-rust.sock");
+
+    if socket.exists() {
+        fs::remove_file(&socket).expect("Could not remove file");
+    }
+
+    let listener = UnixListener::bind("/tmp/pfych-rust.sock").unwrap();
 
     for stream in listener.incoming() {
         match stream {
