@@ -15,13 +15,13 @@ fn main() {
         Ok(_) => {}
         Err(_) => panic!("Could not send message"),
     }
-    // read from the socket
-    let mut response = String::new();
-    match socket.read_to_string(&mut response) {
-        Ok(_) => {}
-        Err(_) => panic!("Could not read message"),
-    }
-    println!("{}", response);
+    // // read from the socket
+    // let mut response = String::new();
+    // match socket.read_to_string(&mut response) {
+    //     Ok(_) => {}
+    //     Err(_) => panic!("Could not read message"),
+    // }
+    // println!("{}", response);
 
     println!("{:?}", socket)
 }
