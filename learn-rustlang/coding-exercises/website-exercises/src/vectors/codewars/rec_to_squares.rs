@@ -4,7 +4,7 @@ use colored::*;
 
 pub fn solution(){
     println!("{} Run test suit {} {}","Rec to square".green(),"cargo test rec_to_square_basic_test".yellow(),"Not finished".red().bold());
-   // let _solution = sq_in_rect(5,3);
+    let _solution = sq_in_rect(5,3);
 }
 
 // solution to the problem

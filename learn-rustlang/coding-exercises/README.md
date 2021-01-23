@@ -4,10 +4,8 @@
 
 Examples while learning the rust language from The Rust Programming Language Book and web.
 
-### code-wars-kata folder
+### website exercises
 
-code for the katas
-
-### exercism-track folder
-
-code for tasks
+code-wars
+leetcode
+exercism rust track

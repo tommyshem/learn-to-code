@@ -1,10 +1,13 @@
-fn main() {
-    let list = vec![0, 1, 0, 1];
-    print!("Binary number is {}", convert(list));
+use colored::*;
+
+pub fn solution(){
+    println!("{} Run test suit {}","Binary Convert".green(),"cargo test testpowerof".yellow());
+    let binary = vec![1, 0, 0, 0, 0, 0, 0, 0];
+    let _solution = convert(binary);
 }
 
 // my version of pow() in rust
-fn powerof(index: u32) -> u128 {
+fn _powerof(index: u32) -> u128 {
     if index == 0 {
         return 1;
     } else {
