@@ -7,5 +7,10 @@ Examples while learning the rust language from The Rust Programming Language Boo
 ### website exercises
 
 code-wars
+https://www.codewars.com/dashboard
 leetcode
+https://leetcode.com/explore/
 exercism rust track
+https://exercism.io/
+codinggame
+https://www.codingame.com/home
