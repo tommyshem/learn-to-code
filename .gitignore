@@ -4,3 +4,4 @@ learn-rustlang/**/target/
 learn-rustlang/**/debug/
 learn-golang/concurrent/goroutine/simple-channel-example/simple-channel
 learn-c/**/*.dSYM
+learn-c/**/main
