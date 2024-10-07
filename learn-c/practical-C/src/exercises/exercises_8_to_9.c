@@ -4,15 +4,15 @@
  *	Exercise 8-1
  *	print a checker board 8x8 +-----+-----+
  */
- struct checkerboard{
-char padding_character; /* padding to use default is [space] */
-char vert_character; /* character to use to draw the vert line */
-char horz_character; /* character to use to draw the horz line */
-int row_height;  /* row height to draw */
-int column_width; /* column width to draw */
-int columns_horizontal_size;  /* size of the checker board width */
-int columns_vertical_size;    /* size of the checker board hight */
- };
+struct checkerboard {
+  char padding_character;      /* padding to use default is [space] */
+  char vert_character;         /* character to use to draw the vert line */
+  char horz_character;         /* character to use to draw the horz line */
+  int row_height;              /* row height to draw */
+  int column_width;            /* column width to draw */
+  int columns_horizontal_size; /* size of the checker board width */
+  int columns_vertical_size;   /* size of the checker board hight */
+};
 
 /* print padding a number of types */
 void _print_padding_character(int width, char pad_character) {
@@ -39,10 +39,11 @@ void _print_line(int columns_horizontal_size, int width) {
 }
 
 /* Print the row line */
-void print_checker_board(int column_width, int row_height,int columns_vertical_size,
+void print_checker_board(int column_width, int row_height,
+                         int columns_vertical_size,
                          int columns_horizontal_size) {
   /* variables */
-  int j, c, t; /* used for looping */
+  int j, t; /* used for looping */
   for (j = 0; j < columns_vertical_size; ++j) {
     _print_line(columns_horizontal_size, column_width);
 
@@ -55,10 +56,15 @@ void print_checker_board(int column_width, int row_height,int columns_vertical_s
   _print_line(columns_horizontal_size, column_width);
 }
 
-int main(void) {
+void exercise_8_1(void) {
   /* variables */
-struct checkerboard checkerboard={.column_width=10,.row_height=5,.columns_horizontal_size=3,.columns_vertical_size=5};
-  print_checker_board(10, 5,2, 3);
-  /* End program */
-  return (0);
+  struct checkerboard checkerboard = {.column_width = 10,
+                                      .row_height = 5,
+                                      .columns_horizontal_size = 3,
+                                      .columns_vertical_size = 5,
+                                      .padding_character = ' ',
+                                      .vert_character = '|',
+                                      .horz_character = '-'};
+  print_checker_board(10, 5, 2, 3);
+
 }
