@@ -266,9 +266,11 @@ void exercise_7_4(void) {
   /* variables */
   float price;
   const float tax = 0.08;
+  float tax_total = 0;
   /* Input price */
   printf("Please enter price (1 - 500) : ");
   price = get_input_with_range(1, 500);
-
-/* TODO */
+  tax_total = price * tax;
+  printf("Input %f tax total %f",price,tax_total);
+/* TODO finish exercise */
 }
