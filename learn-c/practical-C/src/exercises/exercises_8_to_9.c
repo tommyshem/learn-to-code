@@ -131,9 +131,50 @@ void exercise_8_2(void) {
     resistance = 1.0 / resister[i];
     total_resistance = total_resistance + resistance;
   }
-  printf("total resistance in ohm's = %.2f\n", 1/total_resistance);
+  printf("total resistance in ohm's = %.2f\n", 1 / total_resistance);
+}
+/* Exercise 8-3 average numbers n numbers*/
+void exercise_8_3(void) {
+  int number = 0;
+  int numbers[100] = {0};
+  int i = 0;
+  int total = 0;
+  /* Get input for total numbers to average from the std input */
+  printf("Input number of numbers to average (1-100) : ");
+  number = get_input_with_int_range(1, 100);
+  /* get the actual numbers to average from the std input*/
+  for (i = 0; i < number; ++i) {
+    printf("Input number 1 to 10000 : ");
+    numbers[i] = get_input_with_int_range(1, 10000);
+  }
+  /* Calculate the average of the numbers entered */
+  for (i = 0; i < number; ++i) {
+    total = total + numbers[i];
+  }
+  /* Display the average */
+  printf("Average for the numbers entered = %d\n", total / number);
 }
 
-void exercise_8_3(void) {
-  
+/* Exercise 8-4 print out the multiplication table */
+void exercise_8_4(void) {
+  int i = 0;
+  int j = 0;
+  for (j = 1; j < 13; j=j+4) {
+    for (i = 1; i < 13; ++i) {
+      printf("     %3d x %3d = %3d", i, j, i * j);
+      printf("     %3d x %3d = %3d", i, j + 1, i * (j + 1));
+      printf("     %3d x %3d = %3d", i, j + 2, i * (j + 2));
+      printf("     %3d x %3d = %3d\n", i, j + 3, i * (j + 3));
+    }
+    printf("\n");
+  }
 }
+
+/* Exercise 8-5 read a character and print out if its a vowel or a consonant */
+void exercise_8_5(void) {}
+/* Exercise 8-6 convert numbers to words */
+void exercise_8_6(void) {}
+
+/* Exercise 8-7 modify 8-6 so it ouput's eg 85 = eighty-five instead of
+ * eight-five numbers 0-100 */
+void exercise_8_7(void) {}
