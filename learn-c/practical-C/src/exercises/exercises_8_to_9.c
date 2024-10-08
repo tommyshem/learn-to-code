@@ -1,5 +1,50 @@
 #include <stdio.h>
 
+/* print numbers to words helper function*/
+void print_number_to_word(int number_to_print) {
+  switch (number_to_print) {
+  case 1: {
+    printf("one");
+    break;
+  }
+  case 2: {
+    printf("two");
+    break;
+  }
+  case 3: {
+    printf("three");
+    break;
+  }
+  case 4: {
+    printf("four");
+    break;
+  }
+  case 5: {
+    printf("five");
+    break;
+  }
+  case 6: {
+    printf("six");
+    break;
+  }
+  case 7: {
+    printf("seven");
+    break;
+  }
+  case 8: {
+    printf("eight");
+    break;
+  }
+  case 9: {
+    printf("nine");
+    break;
+  }
+  case 0: {
+    printf("zero");
+    break;
+  }
+  }
+}
 /* variables */
 int result_8_int = 0;
 
@@ -159,7 +204,7 @@ void exercise_8_3(void) {
 void exercise_8_4(void) {
   int i = 0;
   int j = 0;
-  for (j = 1; j < 13; j=j+4) {
+  for (j = 1; j < 13; j = j + 4) {
     for (i = 1; i < 13; ++i) {
       printf("     %3d x %3d = %3d", i, j, i * j);
       printf("     %3d x %3d = %3d", i, j + 1, i * (j + 1));
@@ -170,11 +215,84 @@ void exercise_8_4(void) {
   }
 }
 
-/* Exercise 8-5 read a character and print out if its a vowel or a consonant */
-void exercise_8_5(void) {}
+/* Exercise 8-5 read a character and print out if its a vowel or a consonant
+ * vowels are a,e,i,o,u
+ */
+void exercise_8_5(void) {
+  char character;
+  character = getchar();
+  switch (character) {
+  case 'a':
+  case 'e':
+  case 'i':
+  case 'o':
+  case 'u': {
+    printf("Vowel\n");
+    break;
+  }
+  default:
+    printf("consonant\n");
+  }
+}
 /* Exercise 8-6 convert numbers to words */
-void exercise_8_6(void) {}
+void exercise_8_6(void) {
+  int number;
+  int result;
+  int zero;
+  /* get number from std input to convert to words */
+  printf("Enter a number 1 to 9000 : ");
+  number = get_input_with_int_range(1, 9000);
+  /* convert number */
+  if (number >= 1000) {
+    result = number / 1000;
+    print_number_to_word(result);
+    printf("-");
+    number = number - (result * 1000);
+  }
+  if (number >= 100) {
+    result = number / 100;
+    print_number_to_word(result);
+    printf("-");
+    number = number - (result * 100);
+  }
+  if (number >= 10) {
+    result = number / 10;
+    print_number_to_word(result);
+    printf("-");
+    number = number - (result * 10);
+  }
+  print_number_to_word(number);
+  printf("\n");
+}
 
 /* Exercise 8-7 modify 8-6 so it ouput's eg 85 = eighty-five instead of
  * eight-five numbers 0-100 */
-void exercise_8_7(void) {}
+void exercise_8_7(void) {  int number;
+  int result;
+  int zero;
+  /* get number from std input to convert to words */
+  printf("Enter a number 1 to 9000 : ");
+  number = get_input_with_int_range(1, 9000);
+  /* convert number */
+  if (number >= 1000) {
+    result = number / 1000;
+    print_number_to_word(result);
+    printf("-");
+    number = number - (result * 1000);
+  }
+  if (number >= 100) {
+    result = number / 100;
+    print_number_to_word(result);
+    printf("-");
+    number = number - (result * 100);
+  }
+  if (number >= 10) {
+    result = number / 10;
+    print_number_to_word(result);
+    printf("-");
+    number = number - (result * 10);
+  }
+  print_number_to_word(number);
+  printf("\n");
+
+}

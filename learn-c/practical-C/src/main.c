@@ -16,7 +16,7 @@ int main(void) {
   /* Only run the example or exercise you are working on
    */
 
-  exercise_8_4();
+  exercise_8_7();
   return (0); /* comment out this return to run all examples and exercises */
 
   /* all examples are below */
