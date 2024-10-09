@@ -267,32 +267,122 @@ void exercise_8_6(void) {
 
 /* Exercise 8-7 modify 8-6 so it ouput's eg 85 = eighty-five instead of
  * eight-five numbers 0-100 */
-void exercise_8_7(void) {  int number;
+void exercise_8_7(void) {
+  int number;
   int result;
   int zero;
   /* get number from std input to convert to words */
   printf("Enter a number 1 to 9000 : ");
   number = get_input_with_int_range(1, 9000);
-  /* convert number */
+
+  /* convert thousands to words */
   if (number >= 1000) {
     result = number / 1000;
     print_number_to_word(result);
-    printf("-");
+    printf(" thousand ");
     number = number - (result * 1000);
   }
+
+  /* convert hundreds to words */
   if (number >= 100) {
     result = number / 100;
     print_number_to_word(result);
-    printf("-");
+    printf(" hundred ");
     number = number - (result * 100);
   }
-  if (number >= 10) {
-    result = number / 10;
-    print_number_to_word(result);
-    printf("-");
-    number = number - (result * 10);
-  }
-  print_number_to_word(number);
-  printf("\n");
 
+  /* convert tens to words */
+  if (number >= 20) {
+    result = number / 10;
+    /* tens to words */
+    switch (result) {
+    case 2: {
+      printf("twenty");
+      break;
+    }
+    case 3: {
+      printf("thirty");
+      break;
+    }
+    case 4: {
+      printf("forty");
+      break;
+    }
+    case 5: {
+      printf("fifty");
+      break;
+    }
+    case 6: {
+      printf("sixty");
+      break;
+    }
+    case 7: {
+      printf("seventy");
+      break;
+    }
+    case 8: {
+      printf("eighty");
+      break;
+    }
+    case 9: {
+      printf("ninety");
+      break;
+    }
+
+    } /* end switch statement */
+    number = number - (result * 10);
+  } /* end if statement */
+
+  /* numbers 19 downwards to numbers 10 to words */
+  printf(" "); /* format with a space */
+  if (number >= 10) {
+    switch (number) {
+    case 19: {
+      printf("nineteen");
+      break;
+    }
+    case 18: {
+      printf("eighteen");
+      break;
+    }
+    case 17: {
+      printf("seventeen");
+      break;
+    }
+    case 16: {
+      printf("sixteen");
+      break;
+    }
+    case 15: {
+      printf("fifteen");
+      break;
+    }
+    case 14: {
+      printf("fourteen");
+      break;
+    }
+    case 13: {
+      printf("thirteen");
+      break;
+    }
+    case 12: {
+      printf("twelve");
+      break;
+    }
+    case 11: {
+      printf("eleven");
+      break;
+    }
+    case 10: {
+      printf("ten");
+      break;
+    }
+    }
+    number = 0;
+  }
+  /* less than number 9 to words */
+  if (number > 0) {
+    print_number_to_word(number);
+  }
+  printf("\n"); /* format end of line */
 }
