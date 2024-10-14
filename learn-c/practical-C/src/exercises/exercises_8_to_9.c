@@ -386,3 +386,44 @@ void exercise_8_7(void) {
   }
   printf("\n"); /* format end of line */
 }
+
+/* Exercise 9-1 
+* counts the number of words from the string passed in the parameter
+* words are counted with a space and letters on each side.
+* @param char string[] -- the string from which to count the words from 
+* @return int -- number of words from the string passed in
+*/
+int exercise_9_1(char string[]){
+int word_count=0;
+int index=0;
+
+return (word_count);
+}
+
+/* Exercise 9-2 
+* Write a function begins (string1,string2) returns true if string1 begins in string2 
+* compare -- compare first string with 2nd string to see it it begins with the same characters 
+* @param string -- first string 
+* @param string -- second string to compare with first string
+*/
+
+/* Exercise 9-3 
+* Write a function count (number,array,length) that counts the number of times
+* number appears in the array. This function should be recursive. 
+*/
+
+/* Exercise 9-4 
+* Write a function that takes a character array and returns a primitive hash code
+* by adding up the value of each character in the array 
+*/
+
+/* Exercise 9-5 
+* Write a function that returns the maximum value of an array of numbers 
+*
+* @param int [] -- int array to find the maximum value from
+* @return int -- maximum number in the array
+*/
+
+/* Exercise 9-6 write a function that scans a character array for the character and replace it with _ 
+*/
+

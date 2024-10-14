@@ -1,5 +1,26 @@
 #include <stdint.h>
 #include <stdio.h>
+
+/* static keyword
+ * static has 2 meanings
+ * static at global scope means variable is local to current file only and are
+ * initialized once static at local scope means variables are not temporary and
+ * are initialized only once where are temporary variables are initialized every
+ * time they go out of scope
+ */
+/* static example */
+void static_example() {
+  int counter;
+  for (counter = 0; counter < 3; ++counter) {
+    int temporary_variable = 1;
+    static int permanent_variable = 1;
+    printf("Temporary variable = %d permanent variable = %d \n",
+           temporary_variable, permanent_variable);
+    ++temporary_variable;
+    ++permanent_variable;
+  }
+}
+
 /* structure example */
 typedef struct {
   char padding_character;      /* padding to use default is [space] */
@@ -63,9 +84,18 @@ void switch_example() {
   }
 }
 
-/* 
-* Get valid number from standard input 
-*/
+/* strings
+ * example of passing in a copy of the string to a function */
+int length_of_string(char string[]) {
+  int index;
+  for (index = 0; string[index] != '\0'; ++index) { /* do nothing*/
+  }
+  return (index);
+}
+
+/*
+ * Get valid number from standard input
+ */
 int _get_value_int_from_input(int *return_result_int_ptr) {
   char string_8[100];
   int result = 0;
@@ -96,12 +126,27 @@ int get_input_with_int_range(int min, int max) {
   }
 }
 /*
- * direct address example
+ * Example of direct addressing 32 bit chip 
  */
 void direct_address_example() {
-  /* example of direct addressing 32 bit chip */
+ 
   uint8_t bit_position = 6;
   volatile uint32_t *address = (volatile uint32_t *)678985;
   *address = (1 << bit_position); /* puts bit 1 into the address at bit position
                                      all over bits are unchanged */
+}
+
+/* set a bit using a bit mask */
+static inline void set_bit(long *x, int bitNum) {
+    *x |= (1L << bitNum);
+}
+
+/* clear a bit using a bit mask */
+static inline void clear_bit(long *x, int bitNum) {
+    *x &=~ (1L << bitNum);
+}
+
+/* toggle a bit using a bit mask */
+static inline void toggle_bit(long *x, int bitNum) {
+    *x ^= (1L << bitNum);
 }
