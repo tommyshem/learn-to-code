@@ -2,10 +2,12 @@
 #include "examples/example13_6.c"
 #include "examples/example_13_10.c"
 #include "examples/example_13_12.c"
+#include "examples/example_14_4.c"
 #include "examples/examples_5_to_8.c"
 
 /* Exercises include files */
 #include "exercises/exercises_12.c"
+#include "exercises/exercises_14.c"
 #include "exercises/exercises_4_to_5.c"
 #include "exercises/exercises_6_to_7.c"
 #include "exercises/exercises_8_to_9.c"
@@ -21,7 +23,7 @@ int main(int argc, char *argv[]) {
    */
   // char string[] = {"Hello to you"};
   // exercise_9_1(string);
-  example_13_12(argc, argv);
+  exercise_14_5();
   return (0); /* comment out this return to run all examples and exercises */
 
   /* all examples are below */
