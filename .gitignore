@@ -5,3 +5,5 @@ learn-rustlang/**/debug/
 learn-golang/concurrent/goroutine/simple-channel-example/simple-channel
 learn-c/**/*.dSYM
 learn-c/**/main
+/Learning_C_Sharp/**/obj
+/Learning_C_Sharp/**/bin

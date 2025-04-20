@@ -1,0 +1,35 @@
+﻿namespace _15Puzzle;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        
+    }
+}
+
+class Puzzle
+{
+    private int [][] tiles;
+
+    // create puzzle size
+    public Puzzle(int size)
+    {
+        this.tiles = new int[size][];
+    }
+    // newgame so random order for the tiles.
+    public void NewGame(int row, int column)
+    {
+        // create tiles
+        int value = tiles[row][column];
+        // random numbers
+    }
+
+    public void DisplayTiles()
+    {
+        for (int i = 0; i <=tiles.Length; i++)
+        {
+            // go through all the tiles
+        }
+    }
+}

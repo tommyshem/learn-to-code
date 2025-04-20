@@ -1,0 +1,113 @@
+﻿namespace tic_tac_toe;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Hello, World!");
+    }
+
+    enum PLayer
+    {
+        One,
+        Two 
+    }
+    
+    class tic_tac_toe
+    {
+        private  int[] _tiles = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+/// <summary>
+/// Resets the game board to its initial state, setting all tiles to 0.
+/// </summary>
+        private void _newGame()
+        {
+         _tiles = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+        }
+        
+        /// <summary>
+        /// Draws the current state of the board to the console.
+        /// </summary>
+        void DrawBoard()
+        {
+            Console.WriteLine(" {0} | {1} | {2}", _tiles[0], _tiles[1], _tiles[2]);
+            Console.WriteLine(" {0} | {1} | {2}", _tiles[3], _tiles[4], _tiles[5]);
+            Console.WriteLine(" {0} | {1} | {2}", _tiles[6], _tiles[7], _tiles[8]);
+        }
+/// <summary>
+/// Sets the specified tile on the board to the given player's mark.
+/// </summary>
+/// <param name="tile">The index of the tile to set (0-8).</param>
+/// <param name="player">The player setting the tile (PLayer.One or PLayer.Two).</param>
+        void SetTile(int tile, PLayer player)
+        {
+            _tiles[tile] = player == PLayer.One ? 1 : 2;
+        }
+        
+        /// <summary>
+        /// Gets the player that has set a tile, or 0 if the tile is free.
+        /// </summary>
+        /// <param name="tile">The tile to get.</param>
+        /// <returns>The player that has set the tile, or 0 if the tile is free.</returns>
+        int GetTile(int tile)
+        {
+            return _tiles[tile];
+        }
+
+        /// <summary>
+        /// Checks whether a tile is free (i.e. set to 0).
+        /// </summary>
+        /// <param name="tile">The tile to check.</param>
+        /// <returns>True if the tile is free, false otherwise.</returns>
+        bool IsTileFree(int tile)
+        {
+          return _tiles[tile] == 0;  
+        }
+        
+        /// <summary>
+        /// Checks whether all tiles have been filled (i.e. no tiles are set to 0)
+        /// </summary>
+        /// <returns>True if the board is full, false otherwise</returns>
+        bool IsBoardFull()
+        {
+            return _tiles.All(x => x != 0);
+        }
+        
+        /// <summary>
+        /// Prints the winner of the game to the console.
+        /// </summary>
+        /// <param name="player">The player who has won the game.</param>
+        void PrintWinner(PLayer player)
+        {
+            Console.WriteLine("Player {0} wins!", player);
+        }
+        
+/// <summary>
+/// Prints a message to the console indicating that the game has ended in a draw.
+/// </summary>
+        void PrintDraw()
+        {
+            Console.WriteLine("Draw!");
+        }
+
+
+        
+        /// <summary>
+        /// Starts a new game of Tic Tac Toe.
+        /// Prompts two players to enter a number from 1-9.
+        /// </summary>
+        void Play()
+        {
+            _newGame();
+            while (true)
+            {
+                Console.WriteLine("Player 1\n Enter a number from 1-9");
+                var playerOne = Console.Read();
+                
+                Console.WriteLine("Player 2\n Enter a number from 1-9");
+                var playerTwo = Console.Read();
+                
+            }
+        }
+        
+    }
+}
