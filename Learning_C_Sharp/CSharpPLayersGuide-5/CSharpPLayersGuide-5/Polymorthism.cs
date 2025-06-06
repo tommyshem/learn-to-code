@@ -1,19 +1,12 @@
-﻿namespace Polymorthism;
+﻿namespace Learning_C_Sharp;
 // keywords 
 // virtual  = is used for methods which can be override
 // abstract = is used for methods is used for no base implementation
 // override = is used for overriding the virtual and abstract methods
 
-class Program
+class Polymorthism
 {
-    static void Main(string[] args)
-    {
-        var king = new King();
-        bool result = king.IsALegalMove(5, 6);
-        Console.WriteLine($"The result is {result}");
-    }
-
-    class ChessPiece
+    public class ChessPiece
     {
         public int Row { get; set; }
         public int Column { get; set; }
@@ -23,11 +16,13 @@ class Program
         {
             return true;
         }
-    // protected can only be called form derived classes
+
+        // protected can only be called form derived classes
         protected bool IsOnBoard(int row, int column)
         {
             return true;
         }
+
         // protected can only be called form derived classes
         protected bool IsCurrentLocation(int row, int column)
         {
@@ -36,25 +31,25 @@ class Program
     }
 
     // use ChessPiece as the base case
-    class King : ChessPiece
+    public class King : ChessPiece
     {
         // override keyword will override the base method
         public override bool IsALegalMove(int row, int column)
         {
-            if (row == 0 && column==0)
+            if (row == 0 && column == 0)
             {
                 return true;
             }
+
             // this would run the base method 
-            return base.IsALegalMove(row, column);  
+            return base.IsALegalMove(row, column);
         }
+
         // example of the abstract class which and be overrided
         public abstract class Queen : ChessPiece
         {
             // abstract method with no implementation
             public abstract bool Move(int row, int column);
         }
-            
-        
     }
 }

@@ -1,15 +1,4 @@
-﻿namespace Interfaces;
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        // you can use an interface as a vriable
-        ILevelBuilder levelBuilder = new FixedLwevelBuilder();
-        int currentLevel = 1;
-        levelBuilder.BuildLevel(currentLevel);
-    }
-}
+﻿namespace Learning_C_Sharp;
 
 // a class can have only one base class
 // but can implement many interfaces.
