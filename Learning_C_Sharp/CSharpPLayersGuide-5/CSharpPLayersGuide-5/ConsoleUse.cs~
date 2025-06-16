@@ -1,6 +1,6 @@
 namespace Learning_C_Sharp;
 
-public class ConsoleUse
+public class tomConsoleUse
 {
     public void ChangeTitle()
     {
